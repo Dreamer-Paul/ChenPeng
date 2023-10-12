@@ -1,12 +1,22 @@
 <template>
   <Admin>
-    <v-chart :option="option"  />
+    <a-card>
+      <v-chart class="chart" :option="option"  />
+    </a-card>
   </Admin>
 </template>
 <script lang="ts" setup>
+import { use } from "echarts/core";
+import { CanvasRenderer } from "echarts/renderers";
+import { GaugeChart } from "echarts/charts";
 import VChart from "vue-echarts";
 import Admin from '@/components/Layouts/Admin.vue';
 import { ref } from 'vue';
+
+use([
+  CanvasRenderer,
+  GaugeChart,
+]);
 
 const option = ref({
   series: [
@@ -62,3 +72,8 @@ const option = ref({
   ]
 });
 </script>
+<style scoped>
+.chart {
+  height: 400px;
+}
+</style>
