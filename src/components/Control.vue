@@ -4,13 +4,13 @@
       <a-card title="风扇设备控制" :bordered="false">
         <a-row class="item-row">
           <a-col :span="8">
-            室内温度：{{1}}°C
+            室内温度：{{state.temp}}°C
           </a-col>
           <a-col :span="8">
-            室内湿度：{{1}}%
+            室内湿度：{{state.shidu}}%
           </a-col>
           <a-col :span="8">
-            二氧化碳浓度：{{1}}ppm
+            二氧化碳浓度：{{state.eryang}}ppm
           </a-col>
         </a-row>
         <a-row class="item-switch">
@@ -19,7 +19,7 @@
           </a-col>
           <a-col :span="12">
             关
-            <a-switch v-model:checked="state.fanEnabled" />
+            <a-switch v-model:checked="state.fanEnabled" @change="onFanEnableChanged" />
             开
           </a-col>
         </a-row>
@@ -106,5 +106,24 @@ const state = reactive({
   pumpEnabled: false,
   lightEnabled: false,
   buzzerEnabled: false,
+
+  temp: -1,
+  shidu: -1,
+  eryang: -1,
 });
+
+// 开关风扇
+const onFanEnableChanged = (value) => {
+  console.log(value);
+
+  if (value) {
+    state.temp = 123;
+    state.shidu = 456;
+    state.eryang = 789;
+  } else {
+    state.temp = 0;
+    state.shidu = 0;
+    state.eryang = 0;
+  }
+}
 </script>
